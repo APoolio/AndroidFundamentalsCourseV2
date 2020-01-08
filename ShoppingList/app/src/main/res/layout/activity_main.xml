@@ -110,10 +110,32 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="launchSecondActivity"
         android:text="@string/add"
+        app:layout_constraintBottom_toTopOf="@+id/storeToFind"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <EditText
+        android:id="@+id/storeToFind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/searchStore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/searchStore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="findStore"
+        android:text="@string/search_for_store"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        android:onClick="launchSecondActivity"/>
+        android:layout_marginBottom="16dp"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

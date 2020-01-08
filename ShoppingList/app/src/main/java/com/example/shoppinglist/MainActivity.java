@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -18,6 +23,7 @@ public class MainActivity extends AppCompatActivity
     public static final int TEXT_REQUEST = 1;
     private TextView[] emptyView = new TextView[10];
     public static Integer itemNumber = 0;
+    private TextView mStoreEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,12 +41,15 @@ public class MainActivity extends AppCompatActivity
         emptyView[7] = findViewById(R.id.textView8);
         emptyView[8] = findViewById(R.id.textView9);
         emptyView[9] = findViewById(R.id.textView10);
+
+        mStoreEditText = findViewById(R.id.storeToFind);
     }
 
-    public void launchSecondActivity(View view){
+    public void launchSecondActivity(View view)
+    {
         Log.d(LOG_TAG, "To shopping list!");
 
-        if(itemNumber != 10)
+        if (itemNumber != 10)
         {
             Intent intent = new Intent(this, SecondActivity.class);
             startActivityForResult(intent, requestCode);
@@ -59,19 +68,48 @@ public class MainActivity extends AppCompatActivity
 //    }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == TEXT_REQUEST) {
-            if (resultCode == RESULT_OK) {
+        if (requestCode == TEXT_REQUEST)
+        {
+            if (resultCode == RESULT_OK)
+            {
                 String reply = data.getStringExtra(SecondActivity.EXTRA_REPLY);
                 emptyView[itemNumber].setText(reply);
                 itemNumber++;
 
-                if(itemNumber == 10){
+                if (itemNumber == 10)
+                {
                     Toast.makeText(MainActivity.this, "Limit reached", Toast.LENGTH_LONG).show();
                 }
             }
         }
+    }
+
+    public void findStore(View view)
+    {
+        String storeAddress = null;
+        String storeToFind = mStoreEditText.getText().toString();
+        //String storeGeo = "geo:0,0?=" + storeToFind; /* Method failed */
+        String googleSearch = "https://www.google.com/maps/search/?api=1&query=";
+        try{
+            storeAddress = googleSearch + URLEncoder.encode(storeToFind, "UTF-8");
+        } catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+        //Log.d("ImplicitIntent", storeAddress);
+        Uri storeUri = Uri.parse(storeAddress);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, storeUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if(mapIntent.resolveActivity(getPackageManager()) != null)
+        {
+            startActivity(mapIntent);
+        } else
+        {
+            Log.d("ImplicitIntent", "Can't find an application to carry out task!");
+        }
+
     }
 }

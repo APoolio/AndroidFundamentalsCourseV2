@@ -12,7 +12,6 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity
 {
-
     private EditText mWebsiteEditText;
     private EditText mLocationEditText;
     private EditText mShareEditText;
