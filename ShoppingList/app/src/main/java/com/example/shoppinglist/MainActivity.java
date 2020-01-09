@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
         String storeAddress = null;
         String storeToFind = mStoreEditText.getText().toString();
         //String storeGeo = "geo:0,0?=" + storeToFind; /* Method failed */
-        String googleSearch = "https://www.google.com/maps/search/?api=1&query=";
+        String googleSearch = "https://www.google.com/maps/search/?api=1&query="; //Had to use Google Maps search query to filter for the store they wanted
         try{
             storeAddress = googleSearch + URLEncoder.encode(storeToFind, "UTF-8");
         } catch (UnsupportedEncodingException e){
