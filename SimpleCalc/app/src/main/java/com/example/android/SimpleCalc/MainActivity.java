@@ -131,7 +131,7 @@ public class MainActivity extends Activity {
      */
     private static Double getOperand(EditText operandEditText) {
         String operandText = getOperandText(operandEditText);
-        
+
         /* Solution to fix error that is caused when one EditText vield is left blank (Empty String) */
         if(operandText.matches("")){
             return Double.valueOf("0");
