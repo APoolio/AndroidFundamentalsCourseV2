@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Fri Jan 17 10:56:00 EST 2020
+0.baseType=DIRECTORY
+0.base=C\:\\Users\\apoole13\\AndroidStudioProjects\\AndroidStudioFundamentalsV2Course\\TabExperiment(FromLesson)\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+0.path=classes.dex
+0.set=DEX
+count=1

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.TimePickerDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TimePicker;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener
+public class MainActivity extends AppCompatActivity implements TimePickerFragment.OnFragmentInteractionListener
 {
 
     @Override
@@ -21,22 +22,20 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         setContentView(R.layout.activity_main);
     }
 
-    public void showDatePicker(View view)
+
+    /* Display the Time Picker dialog to the user */
+    public void showTimePicker(View view)
     {
+        /* Dialog Fragment is a fragment that displays a dialog window on top of its activity's window. */
         DialogFragment newFragment = new TimePickerFragment();
 
         /* getSupportFragmentManager() manages the fragment that you are calling */
-        newFragment.show(getSupportFragmentManager(), getString(R.string.datepicker));
+        newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
-    @Override
-    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute)
-    {
-        final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR);
-        int minuteE = c.get(Calendar.MINUTE);
-    }
 
+
+    /* User has picked a time and is being displayed to them by a Toast for confirmation */
     public void processTimePickerResult(int hour, int minute)
     {
         String sHour = Integer.toString(hour);
@@ -45,4 +44,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
         Toast.makeText(this, "Time: " + timeMessage, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {}
 }
