@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.androidfundamentals45recyclerview.MainActivity">
+    <item
+        android:id="@+id/reset_words"
+        android:orderInCategory="100"
+        android:title="@string/reset"
+        app:showAsAction="never"
+        />
+</menu>
