@@ -14,26 +14,36 @@
  * limitations under the License.
  */
 
+
+/* This class represents the data model for each row of data in the RecyclerView. Right now it contains a field for the title of the sport and a field for some information about the sport. */
+
 package com.example.android.materialme;
 
 /**
  * Data model for each row of the RecyclerView
  */
-class Sport {
+class Sport
+{
 
     // Member variables representing the title and information about the sport.
     private String title;
     private String info;
 
+
+    private  final int imageResource;
+
     /**
      * Constructor for the Sport data model.
      *
      * @param title The name if the sport.
-     * @param info Information about the sport.
+     * @param info  Information about the sport.
+     * @param imageResource Image to be displayed on the card view
      */
-    Sport(String title, String info) {
+    Sport(String title, String info, int imageResource)
+    {
         this.title = title;
         this.info = info;
+        this.imageResource = imageResource;
     }
 
     /**
@@ -41,7 +51,8 @@ class Sport {
      *
      * @return The title of the sport.
      */
-    String getTitle() {
+    String getTitle()
+    {
         return title;
     }
 
@@ -50,7 +61,12 @@ class Sport {
      *
      * @return The info about the sport.
      */
-    String getInfo() {
+    String getInfo()
+    {
         return info;
     }
+
+    /* Used to call the */
+    public int getImageResource() { return imageResource;}
+
 }

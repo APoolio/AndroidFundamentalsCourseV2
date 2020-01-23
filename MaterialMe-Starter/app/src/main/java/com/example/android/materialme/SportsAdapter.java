@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* This is the adapter for the RecyclerView. It uses an ArrayList of Sport objects as its data and populates each row with this data. */
+
 package com.example.android.materialme;
 
 import android.content.Context;

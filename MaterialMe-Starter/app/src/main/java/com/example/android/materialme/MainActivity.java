@@ -23,11 +23,14 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/* The MainActivity initializes the RecyclerView and adapter, and creates the data from resource files. */
+
 /***
  * Main Activity for the Material Me app, a mock sports news application
  * with poor design choices.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     // Member variables.
     private RecyclerView mRecyclerView;
@@ -35,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private SportsAdapter mAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -59,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Initialize the sports data from resources.
      */
-    private void initializeData() {
+    private void initializeData()
+    {
         // Get the resources from the XML file.
         String[] sportsList = getResources()
                 .getStringArray(R.array.sports_titles);
@@ -71,8 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Create the ArrayList of Sports objects with titles and
         // information about each sport.
-        for(int i=0;i<sportsList.length;i++){
-            mSportsData.add(new Sport(sportsList[i],sportsInfo[i]));
+        for (int i = 0; i < sportsList.length; i++)
+        {
+            mSportsData.add(new Sport(sportsList[i], sportsInfo[i]));
         }
 
         // Notify the adapter of the change.
