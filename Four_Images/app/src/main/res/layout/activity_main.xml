@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/circle"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/solid_circle"
+        android:layout_toLeftOf="@id/center"
+        android:layout_alignBottom="@+id/center"
+        android:transitionName=""
+        />
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/solid_line"
+        android:layout_alignBottom="@id/center"
+        android:layout_alignStart="@id/center" />
+
+    <View
+        android:id="@+id/center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        />
+
+    <ImageView
+        android:id="@+id/square"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/solid_square"
+        android:layout_alignTop="@id/center"
+        android:layout_alignStart="@id/center" />
+
+    <ImageView
+        android:id="@+id/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_android_black_24dp"
+        android:layout_toLeftOf="@id/center"
+        android:layout_alignTop="@+id/center" />
+
+</RelativeLayout>
