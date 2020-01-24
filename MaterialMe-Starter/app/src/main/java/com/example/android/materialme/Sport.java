@@ -29,8 +29,7 @@ class Sport
     private String title;
     private String info;
 
-
-    private  final int imageResource;
+    private final int imageResource;
 
     /**
      * Constructor for the Sport data model.

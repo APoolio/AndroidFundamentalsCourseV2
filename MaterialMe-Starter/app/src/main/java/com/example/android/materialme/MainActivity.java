@@ -16,12 +16,16 @@
 
 package com.example.android.materialme;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /* The MainActivity initializes the RecyclerView and adapter, and creates the data from resource files. */
 
@@ -58,6 +62,33 @@ public class MainActivity extends AppCompatActivity
 
         // Get the data.
         initializeData();
+
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT |
+                ItemTouchHelper.DOWN | ItemTouchHelper.UP, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT)
+        {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target)
+            {
+                int from = viewHolder.getAdapterPosition();
+                int to = target.getAdapterPosition();
+                /* Swap the from and to on the array list and notify the adapter of the change */
+                Collections.swap(mSportsData, from, to);
+                mAdapter.notifyItemMoved(from, to);
+                return true;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction)
+            {
+                /* Removing the data from the array which the adapter gets its data from */
+                mSportsData.remove(viewHolder.getAdapterPosition());
+                /* Need to notify the adapter of the removal also*/
+                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        });
+
+        /* Adds the helper to the RecyclerView */
+        helper.attachToRecyclerView(mRecyclerView);
     }
 
     /**
@@ -66,10 +97,9 @@ public class MainActivity extends AppCompatActivity
     private void initializeData()
     {
         // Get the resources from the XML file.
-        String[] sportsList = getResources()
-                .getStringArray(R.array.sports_titles);
-        String[] sportsInfo = getResources()
-                .getStringArray(R.array.sports_info);
+        String[] sportsList = getResources().getStringArray(R.array.sports_titles);
+        String[] sportsInfo = getResources().getStringArray(R.array.sports_info);
+        TypedArray sportsImageResources = getResources().obtainTypedArray(R.array.sports_images);
 
         // Clear the existing data (to avoid duplication).
         mSportsData.clear();
@@ -78,11 +108,17 @@ public class MainActivity extends AppCompatActivity
         // information about each sport.
         for (int i = 0; i < sportsList.length; i++)
         {
-            mSportsData.add(new Sport(sportsList[i], sportsInfo[i]));
+            /* getResourceId(index of attribute to retrieve, value to return if the attribute is not defined )*/
+            mSportsData.add(new Sport(sportsList[i], sportsInfo[i], sportsImageResources.getResourceId(i,0)));
         }
 
+        sportsImageResources.recycle();
         // Notify the adapter of the change.
         mAdapter.notifyDataSetChanged();
     }
 
+    public void resetSports(View view)
+    {
+        initializeData();
+    }
 }
