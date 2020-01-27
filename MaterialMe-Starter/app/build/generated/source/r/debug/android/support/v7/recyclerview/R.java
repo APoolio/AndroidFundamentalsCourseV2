@@ -124,7 +124,7 @@ public final class R {
         public static final int top = 0x7f0900b6;
     }
     public static final class integer {
-        public static final int status_bar_notification_info_maxnum = 0x7f0a0009;
+        public static final int status_bar_notification_info_maxnum = 0x7f0a000a;
     }
     public static final class layout {
         public static final int notification_action = 0x7f0b002c;
