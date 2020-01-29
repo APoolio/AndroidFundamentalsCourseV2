@@ -1,17 +1,16 @@
-package com.example.whowroteit;
+package com.example.whowroteitloader;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
 import android.content.Context;
-import android.hardware.input.InputManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private EditText mBookInput;
     private TextView mTitleText;
     private TextView mAuthorText;
+    private TextView mEPUB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mBookInput = findViewById(R.id.bookInput);
         mTitleText = findViewById(R.id.titleText);
         mAuthorText = findViewById(R.id.authorText);
+        mEPUB = findViewById(R.id.epubText);
 
         //Reconnects the loader to the activity
         if(getSupportLoaderManager().getLoader(0)!=null) //If it exists
@@ -119,12 +120,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             int i = 0;
             String title = null;
             String authors = null;
+            String epub = null;
 
             while(i < itemsArray.length() && (authors == null && title == null))
             {
                 //Get the current book
                 JSONObject book = itemsArray.getJSONObject(i);
                 JSONObject volumeInfo = book.getJSONObject("volumeInfo");
+                JSONObject accessInfo = book.getJSONObject("accessInfo");
 
                 // Getting the author and the title from the current book
                 // if either are empty then move on
@@ -132,6 +135,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     title = volumeInfo.getString("title");
                     authors = volumeInfo.getString("authors");
                 } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    epub = accessInfo.getString("country");
+                    Log.d("ANDREW_TEST", epub);
+                } catch (Exception e){
                     e.printStackTrace();
                 }
 

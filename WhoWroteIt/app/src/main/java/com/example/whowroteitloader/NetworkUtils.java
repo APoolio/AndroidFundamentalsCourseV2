@@ -1,4 +1,4 @@
-package com.example.whowroteit;
+package com.example.whowroteitloader;
 
 import android.net.Uri;
 import android.util.Log;
@@ -23,6 +23,8 @@ public class NetworkUtils
     private static final String MAX_RESULTS = "maxResults";
     // Parameter to filter by print type.
     private static final String PRINT_TYPE = "printType";
+    // Parameter for epub only
+    private static final String DOWNLOAD = "download"
 
     //Takes a string and returns a JSON from the API
     static String getBookInfo(String queryString)
@@ -38,6 +40,7 @@ public class NetworkUtils
                     .appendQueryParameter(QUERY_PARAM, queryString)
                     .appendQueryParameter(MAX_RESULTS, "10")
                     .appendQueryParameter(PRINT_TYPE, "books")
+                    .appendQueryParameter(DOWNLOAD, "epub")
                     .build();
 
             URL requestURL = new URL(builtURI.toString()); //Building the URL to request

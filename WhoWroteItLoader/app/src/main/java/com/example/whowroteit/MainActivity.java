@@ -1,4 +1,4 @@
-package com.example.whowroteit;
+package com.example.whowroteitloader;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
