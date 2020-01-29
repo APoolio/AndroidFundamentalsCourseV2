@@ -24,7 +24,7 @@ public class NetworkUtils
     // Parameter to filter by print type.
     private static final String PRINT_TYPE = "printType";
     // Parameter for epub only
-    private static final String DOWNLOAD = "download"
+    private static final String DOWNLOAD = "download";
 
     //Takes a string and returns a JSON from the API
     static String getBookInfo(String queryString)
