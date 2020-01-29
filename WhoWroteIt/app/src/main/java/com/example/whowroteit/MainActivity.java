@@ -28,5 +28,6 @@ public class MainActivity extends AppCompatActivity
     {
         //Book we will be searching from user input
         String queryString = mBookInput.getText().toString();
+        new FetchBook(mTitleText, mAuthorText).execute(queryString); //Calling the AsyncTask and passing in the book title given from the user
     }
 }
