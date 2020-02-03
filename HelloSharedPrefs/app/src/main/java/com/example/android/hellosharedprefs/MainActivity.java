@@ -15,11 +15,13 @@
  */
 package com.example.android.hellosharedprefs;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -51,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
     //shared preference file
     private String sharedPrefFile = "com.example.android.hellosharedprefs";
 
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+
+    public static final String EXTRA_MESSAGE = "com.example.hellosharedprefs.extra.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
      * OnPause is similar to onSaveInstance but it is used to save data
      * across app uses
      */
-    @Override
+    /*@Override
     protected void onPause()
     {
         super.onPause();
 
-        /*//Needed to write to a shared preference object
+        //Needed to write to a shared preference object
         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
 
         //Used to store the current color and current count
@@ -94,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putInt(COLOR_KEY, mColor);
 
         //Saving the preferences asynchronously off of the UI thread
-        preferencesEditor.apply();*/
+        preferencesEditor.apply();
 
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+        *//*SharedPreferences.Editor preferencesEditor = mPreferences.edit();
         preferencesEditor.putInt(COUNT_KEY, mCount);
         preferencesEditor.putInt(COLOR_KEY, mColor);
-        preferencesEditor.apply();
-    }
+        preferencesEditor.apply();*//*
+    }*/
 
     /**
      * Handles the onClick for the background color buttons. Gets background
@@ -146,10 +152,20 @@ public class MainActivity extends AppCompatActivity {
 
         //Editor to clear saved data
         SharedPreferences.Editor preferenceEditor = mPreferences.edit();
-        
+
         preferenceEditor.clear();
 
         preferenceEditor.apply();
 
+    }
+
+    public void launchActivity(View view)
+    {
+        Log.d(LOG_TAG, "Button clicked!");
+
+        Intent intent = new Intent(this, SaveActivity.class);
+        intent.putExtra("color", mColor);
+        intent.putExtra("count", mCount);
+        startActivity(intent);
     }
 }
