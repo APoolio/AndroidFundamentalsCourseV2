@@ -14,8 +14,10 @@ package com.example.roomwordssample;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+@Entity(tableName = "word_table")
 public class Word
 {
     @PrimaryKey //Unique key for each entity

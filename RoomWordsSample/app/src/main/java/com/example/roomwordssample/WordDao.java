@@ -1,4 +1,4 @@
-/**
+package com.example.roomwordssample; /**
  *                                              Dao (Data Access Object)
  *
  * The data access object, or Dao, is an annotated class where you specify SQL queries and associate them with method calls.
@@ -10,6 +10,7 @@
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.roomwordssample.Word;
@@ -19,7 +20,7 @@ import java.util.List;
 @Dao //Identifies the class as a DAO
 public interface WordDao
 {
-    @Insert //SQL done for you
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Word word);
 
     @Query("DELETE FROM word_table")

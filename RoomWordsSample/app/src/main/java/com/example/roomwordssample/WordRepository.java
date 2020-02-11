@@ -1,9 +1,9 @@
+package com.example.roomwordssample;
+
 import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-
-import com.example.roomwordssample.Word;
 
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class WordRepository
     {
         private WordDao mAsyncTaskDao;
 
-        //Constructor for the AsyncTask. Passed in a WordDao to call the insert method
+        //Constructor for the AsyncTask. Passed in a com.example.roomwordssample.WordDao to call the insert method
         insertAsyncTask(WordDao dao) { mAsyncTaskDao = dao;}
 
         //Calling insert on another thread
