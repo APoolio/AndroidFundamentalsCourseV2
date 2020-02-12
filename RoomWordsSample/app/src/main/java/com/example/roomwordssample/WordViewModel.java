@@ -5,6 +5,10 @@ package com.example.roomwordssample; /**
  * classes lets you better follow the single responsibility principle: Your activities and fragments are responsible for drawing data to the screen,
  * while your ViewModel is responsible for holding and processing all the data needed for the UI.
  *
+ * The WordViewModel hides everything about the backend from the user interface. It provides methods for accessing the UI data, and it returns LiveData
+ * so that MainActivity can set up the observer relationship. Views, activities, and fragments only interact with the data through the ViewModel.
+ * As such, it doesn't matter where the data comes from.
+ *
  * **/
 
 
@@ -36,5 +40,6 @@ public class WordViewModel extends AndroidViewModel
     LiveData<List<Word>> getAllWords() { return mAllWords; }
 
     //Inserting a word into the repo which inserts it into the db
+    //Called from the MainActivity in onActivityResult and used the Repository insert to insert into the DB Room
     public void insert(Word word) { mRepository.insert(word); }
 }

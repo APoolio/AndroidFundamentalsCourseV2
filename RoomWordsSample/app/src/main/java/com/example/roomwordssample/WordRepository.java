@@ -33,13 +33,13 @@ public class WordRepository
         mAllWords = mWordDao.getAllWords();
     }
 
-    //Wrapper to return the words as LiveData
+    //Wrapper to return the words as LiveData which basically notifies the MainActivity (Observer) when the words have been changed and the UI is updated 
     LiveData<List<Word>> getAllWords()
     {
         return mAllWords;
     }
 
-    //Wrapper for the insert method
+    //Wrapper for the insert method called from the WordViewModel which uses the WordDao
     public void insert (Word word)
     {
         //Have to use an AsnycTask to call insert so it will be on a non-UI thread or the app will crash

@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -38,6 +37,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Once the FAB is clicked the NewWordActivity is called with an intent and if a word is inputed by the user onActivityResult will be called
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
         {
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    //If the user put a word in then onActivityResult will be called after the return of the intent and will call insert from the WordViewModel
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);

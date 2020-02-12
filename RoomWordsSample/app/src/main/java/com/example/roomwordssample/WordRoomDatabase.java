@@ -1,6 +1,7 @@
-package com.example.roomwordssample; /**
- * RoomDatabase
- * <p>
+package com.example.roomwordssample;
+/**
+ *                                                                      RoomDatabase
+ *
  * Room is a database layer on top of an SQLite database. Room takes care of mundane tasks that you used to handle with a database helper class such as SQLiteOpenHelper.
  **/
 
