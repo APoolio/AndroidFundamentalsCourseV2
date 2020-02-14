@@ -33,7 +33,7 @@ public class WordRepository
         mAllWords = mWordDao.getAllWords();
     }
 
-    //Wrapper to return the words as LiveData which basically notifies the MainActivity (Observer) when the words have been changed and the UI is updated 
+    //Wrapper to return the words as LiveData which basically notifies the MainActivity (Observer) when the words have been changed and the UI is updated
     LiveData<List<Word>> getAllWords()
     {
         return mAllWords;
