@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,17 +74,48 @@ public class MainActivity extends AppCompatActivity
                 mAdapter.setWords(words);
             }
         });
+
+        // Adding the functionality to swipe items in the recycler view to delete a word
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT)
+        {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target)
+            {
+                return false;
+            }
+
+
+            //When user swipes left or right on a word to delete it
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction)
+            {
+                //Get position of the viewHolder that was swiped
+                int position = viewHolder.getAdapterPosition();
+                //Get word at position using our getWordAtPosition method we defined
+                Word myWord = mAdapter.getWordAtPosition(position);
+                Toast.makeText(MainActivity.this, "Deleting " + myWord.getWord(), Toast.LENGTH_LONG).show();
+
+                //Delete the word via view model which calls the repo which calls the dao query
+                mWordViewModel.deleteWord(myWord);
+            }
+        });
+
+        helper.attachToRecyclerView(mRecylerView);
     }
+
 
     //If the user put a word in then onActivityResult will be called after the return of the intent and will call insert from the WordViewModel
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK)
+        {
             Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
             mWordViewModel.insert(word);
-        } else {
+        }
+        else
+        {
             Toast.makeText(getApplicationContext(), R.string.empty_not_saved, Toast.LENGTH_LONG).show();
         }
     }
@@ -105,11 +137,18 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
+        if (id == R.id.clear_data)
         {
+            Toast.makeText(this, "Clearing the data...", Toast.LENGTH_SHORT).show();
+            mWordViewModel.deleteAll();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void editButton(View view)
+    {
+        
     }
 }

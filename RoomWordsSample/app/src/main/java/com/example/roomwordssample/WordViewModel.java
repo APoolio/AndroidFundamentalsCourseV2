@@ -42,4 +42,10 @@ public class WordViewModel extends AndroidViewModel
     //Inserting a word into the repo which inserts it into the db
     //Called from the MainActivity in onActivityResult and used the Repository insert to insert into the DB Room
     public void insert(Word word) { mRepository.insert(word); }
+
+    //Calling the deleteAll in the WordRepo to Asynchronously call deleteAll for the Dao
+    public void deleteAll() { mRepository.deleteAll(); }
+
+    //Calling deleteWord in the WordRepo to Asynchronously call deleteWord for the Dao
+    public void deleteWord(Word word) { mRepository.deleteWord( word); }
 }

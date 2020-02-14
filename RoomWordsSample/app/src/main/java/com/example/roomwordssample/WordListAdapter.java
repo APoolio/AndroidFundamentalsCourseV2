@@ -32,6 +32,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         return new WordViewHolder(itemView);
     }
 
+    //Get word at position
+    public Word getWordAtPosition(int position) { return mWords.get(position);}
+
     //Connects the data to the view holder
     @Override
     public void onBindViewHolder(WordViewHolder holder, int position)
