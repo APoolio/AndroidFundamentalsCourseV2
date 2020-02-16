@@ -47,5 +47,8 @@ public class WordViewModel extends AndroidViewModel
     public void deleteAll() { mRepository.deleteAll(); }
 
     //Calling deleteWord in the WordRepo to Asynchronously call deleteWord for the Dao
-    public void deleteWord(Word word) { mRepository.deleteWord( word); }
+    public void deleteWord(Word word) { mRepository.deleteWord(word); }
+
+    //Calling updateWord in the WordRepo to Asynchronously call updateWord for the Dao
+    public void updateWord(Word word) {mRepository.updateWord(word); }
 }

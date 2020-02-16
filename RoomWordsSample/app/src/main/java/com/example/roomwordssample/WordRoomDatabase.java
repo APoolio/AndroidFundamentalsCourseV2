@@ -17,7 +17,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 //Annotating to be a RoomDatabase
 //exportSchema to false since we are not keeping a history of schema versions (For migrating to databases)
-@Database(entities = {Word.class}, version = 1, exportSchema = false)
+@Database(entities = {Word.class}, version = 2, exportSchema = false)
 public abstract class WordRoomDatabase extends RoomDatabase
 {
     public abstract WordDao wordDao();

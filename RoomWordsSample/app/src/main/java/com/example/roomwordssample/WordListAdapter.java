@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 {
     // LayoutInflator is used to inflate the XML. Reads a layout XML description and converts it into the corresponding View items.
     private final LayoutInflater mInflater;
+
+    //click listener for each view holder
+    private static ClickListener clickListener;
 
     // Cached copy of words
     private List<Word> mWords;
@@ -68,15 +72,25 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     }
 
     //Class for a single list item in the recycler view
-    class WordViewHolder extends RecyclerView.ViewHolder
+    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private final TextView wordItemView;
 
         private WordViewHolder(View itemView)
         {
             super(itemView);
+            itemView.setOnClickListener(this);
             wordItemView = itemView.findViewById(R.id.textView);
+        }
 
+        @Override
+        public void onClick(View view)
+        {
+            clickListener.onItemClick(getAdapterPosition(), view);
         }
     }
+
+    public void setOnItemClickListener(ClickListener clickListener) { WordListAdapter.clickListener = clickListener;}
+
+    public interface ClickListener { void onItemClick(int position, View v);}
 }

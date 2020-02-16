@@ -10,6 +10,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/text_view_style"
-        tools:text="placeholder text"
-        android:onClick="editButton"/>
+        tools:text="placeholder text" />
 </LinearLayout>

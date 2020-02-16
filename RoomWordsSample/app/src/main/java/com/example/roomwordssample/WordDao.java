@@ -13,6 +13,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.roomwordssample.Word;
 
@@ -39,5 +40,8 @@ public interface WordDao
     //Delete deletes a single row in db
     @Delete
     void deleteWord(Word word);
+
+    @Update
+    void update(Word... word);
 }
 

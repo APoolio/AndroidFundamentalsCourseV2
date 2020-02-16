@@ -40,11 +40,7 @@ public class WordRepository
     }
 
     //Wrapper for the insert method called from the WordViewModel which uses the WordDao
-    public void insert(Word word)
-    {
-        //Have to use an AsnycTask to call insert so it will be on a non-UI thread or the app will crash
-        new insertAsyncTask(mWordDao).execute(word);
-    }
+    public void insert(Word word) {/*Have to use an AsnycTask to call insert so it will be on a non-UI thread or the app will crash*/new insertAsyncTask(mWordDao).execute(word);}
 
     //Invokes the AsyncTask deleteAll below which will be called from the ViewModel
     public void deleteAll()
@@ -52,10 +48,9 @@ public class WordRepository
         new deleteAllWordsAsyncTask(mWordDao).execute();
     }
 
-    public void deleteWord(Word word)
-    {
-        new deleteWordAsyncTask(mWordDao).execute(word);
-    }
+    public void deleteWord(Word word) { new deleteWordAsyncTask(mWordDao).execute(word);}
+
+    public void updateWord(Word word) { new updateWordAsyncTask(mWordDao).execute(word);}
 
     //AsyncTask<Parameter Type, Type to publish progress, Result type>
     private static class insertAsyncTask extends AsyncTask<Word, Void, Void>
@@ -106,6 +101,24 @@ public class WordRepository
         protected Void doInBackground(final Word... params)
         {
             mAsyncTaskDao.deleteWord(params[0]);
+            return null;
+        }
+    }
+
+    //AsyncTask to call the Dao's @Update query
+    private static class updateWordAsyncTask extends AsyncTask<Word, Void, Void>
+    {
+        private WordDao mAsyncTaskDao;
+
+        updateWordAsyncTask(WordDao dao)
+        {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Word... params)
+        {
+            mAsyncTaskDao.update(params[0]);
             return null;
         }
     }

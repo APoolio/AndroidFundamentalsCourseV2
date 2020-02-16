@@ -15,19 +15,34 @@ package com.example.roomwordssample;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "word_table")
 public class Word
 {
-    @PrimaryKey //Unique key for each entity
+    //Unique key for each entity
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @NonNull //Can't be null
     @ColumnInfo(name = "word") //Column it is under
     private String mWord;
 
-    //Constructor
-    public Word(@NonNull String word) {this.mWord = word; }
+    //Constructor with word and ID
+    //@Ignore because Room only expects one constructor
+    @Ignore
+    public Word(@NonNull String word, int id) {this.mWord = word; this.id = id; }
 
-    //Getter
+    //Constructor for just a word
+    public Word(@NonNull String word) {this.mWord = word;}
+
+    //Getter for word
     public String getWord() {return this.mWord; }
+
+    //Getter for word id
+    public int getId() {return this.id; }
+
+    //Setter
+    public void setId(int id) { this.id = id;}
 }
