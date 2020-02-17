@@ -11,6 +11,7 @@ Working throuh an [Android Developer Fundamentals Course](https://developer.andr
 - TwoActivities (2.1) -> Actvities and Intents
 - TwoActivities_CodingChallenge_2.1 -> Activities and Intents (Explicit Intents, intent.putExtra())
 - Two Activities (2.2) -> Actvity Lifecycle and State (onSaveInstanceState(Bundle outState))
+- ShoppingList (2.2 CodingChallenge) -> Activity LifeCycle
 - ImplicitIntents (2.3) -> Implicit Intents (Options to carry out an action)
 - ImplicitIntentsReceiver (2.3 Task 5) -> Recieving an Implicit Intent
 - SimpleCalc (3.1) -> The Debugger (Basics)
@@ -47,5 +48,4 @@ Working throuh an [Android Developer Fundamentals Course](https://developer.andr
 - DroidCafeWithSettings (9.2) -> App Settings
 - RoomsWordSample (10.1 Part A) -> Room, LiveData, and ViewModel
 - RoomsWordSample (10.1 Part B) -> Deleting Data from a Room Database
-- ShoppingList
 
