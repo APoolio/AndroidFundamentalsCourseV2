@@ -1,5 +1,7 @@
 # AndroidFundamentalsCourseV2
 
+Working throuh an [Android Developer Fundamentals Course](https://developer.android.com/courses/fundamentals-training/overview-v2) where you build a variety of apps which hits key points of Android Development. 
+
 
 ## Android Fundamentals V2 Course Reference
 
