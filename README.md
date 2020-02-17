@@ -13,7 +13,7 @@ Working throuh an [Android Developer Fundamentals Course](https://developer.andr
 - Two Activities (2.2) -> Actvity Lifecycle and State (onSaveInstanceState(Bundle outState))
 - ImplicitIntents (2.3) -> Implicit Intents (Options to carry out an action)
 - ImplicitIntentsReceiver (2.3 Task 5) -> Recieving an Implicit Intent
-- Shoppinglist (3.1) -> The Debugger (Basics)
+- SimpleCalc (3.1) -> The Debugger (Basics)
 - SimpleCalc (3.2) -> Unit Tests
 - HelloCompat (3.3) -> Support Libraries (Basically just a coding challenge)
 - DroidCafe (4.1) -> Clickable Images
@@ -47,4 +47,5 @@ Working throuh an [Android Developer Fundamentals Course](https://developer.andr
 - DroidCafeWithSettings (9.2) -> App Settings
 - RoomsWordSample (10.1 Part A) -> Room, LiveData, and ViewModel
 - RoomsWordSample (10.1 Part B) -> Deleting Data from a Room Database
+- ShoppingList
 
