@@ -1,12 +1,11 @@
 package com.example.hellocompat;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
@@ -17,7 +16,7 @@ public class MainActivity extends AppCompatActivity
     private String[] mColorArray = {"red", "pink", "purple", "deep_purple",
             "indigo", "blue", "light_blue", "cyan", "teal", "green",
             "light_green", "lime", "yellow", "amber", "orange", "deep_orange",
-            "brown", "grey", "blue_grey", "black" };
+            "brown", "grey", "blue_grey", "black"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,7 +29,8 @@ public class MainActivity extends AppCompatActivity
 
         /* If savedInstanceState is not null then there is info the savedInstanceState bundle
            In this case it is restoring the text color */
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null)
+        {
             mHelloTextView.setTextColor(savedInstanceState.getInt("color"));
         }
     }

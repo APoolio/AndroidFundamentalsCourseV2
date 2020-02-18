@@ -1,20 +1,17 @@
 package com.example.shoppinglist;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -94,19 +91,22 @@ public class MainActivity extends AppCompatActivity
         String storeToFind = mStoreEditText.getText().toString();
         //String storeGeo = "geo:0,0?=" + storeToFind; /* Method failed */
         String googleSearch = "https://www.google.com/maps/search/?api=1&query="; //Had to use Google Maps search query to filter for the store they wanted
-        try{
+        try
+        {
             storeAddress = googleSearch + URLEncoder.encode(storeToFind, "UTF-8");
-        } catch (UnsupportedEncodingException e){
+        } catch (UnsupportedEncodingException e)
+        {
             e.printStackTrace();
         }
         //Log.d("ImplicitIntent", storeAddress);
         Uri storeUri = Uri.parse(storeAddress);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, storeUri);
         mapIntent.setPackage("com.google.android.apps.maps");
-        if(mapIntent.resolveActivity(getPackageManager()) != null)
+        if (mapIntent.resolveActivity(getPackageManager()) != null)
         {
             startActivity(mapIntent);
-        } else
+        }
+        else
         {
             Log.d("ImplicitIntent", "Can't find an application to carry out task!");
         }
