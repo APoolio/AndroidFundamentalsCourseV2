@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JobSchedulerWithNotifications</string>
+    <string name="create_notification">Create Notification</string>
+    <string name="create_notification_in_background">Create Notification in Background</string>
+</resources>
