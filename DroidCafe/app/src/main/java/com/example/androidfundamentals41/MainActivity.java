@@ -19,12 +19,16 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
 {
     String mOrderMessage;
+
+    //Intent key
     public static final String EXTRA_MESSAGE = "com.example.androidfundamentals41.extra.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        //References
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,11 +63,8 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
-            return true;
-        }
+        //If user selects the action_settings
+        if (id == R.id.action_settings) return true;
 
         return super.onOptionsItemSelected(item);
     }

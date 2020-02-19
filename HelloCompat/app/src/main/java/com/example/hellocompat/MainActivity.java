@@ -27,17 +27,14 @@ public class MainActivity extends AppCompatActivity
         mHelloTextView = findViewById(R.id.hello_textview);
 
 
-        /* If savedInstanceState is not null then there is info the savedInstanceState bundle
-           In this case it is restoring the text color */
-        if (savedInstanceState != null)
-        {
-            mHelloTextView.setTextColor(savedInstanceState.getInt("color"));
-        }
+        // If savedInstanceState is not null then there is info the savedInstanceState bundle.
+        // In this case it is restoring the text color
+        if (savedInstanceState != null) mHelloTextView.setTextColor(savedInstanceState.getInt("color"));
     }
 
 
-    /* onSaveInstanceState is called due to some action (i.e phone rotated)
-       This is where we are saving the text color to be stored by storing it in the bundle outState */
+    //onSaveInstanceState is called due to some action (i.e phone rotated)
+    //This is where we are saving the text color to be stored by storing it in the bundle outState
     @Override
     public void onSaveInstanceState(Bundle outState)
     {
@@ -51,6 +48,7 @@ public class MainActivity extends AppCompatActivity
         Random random = new Random();
         String colorName = mColorArray[random.nextInt(20)]; //nextInt(x) generates random ints from 0 to x-1
         Log.d("colorName", colorName);
+
         /*
         *  getResources() gets all the resources for the app
         *  getIdentifier() looks up the color name in the color resources file
@@ -61,15 +59,16 @@ public class MainActivity extends AppCompatActivity
          colorResourceName is basically getting the color identifier (#234FD) that matches the colorName in the colors.xml file
          Each def name and value have their own integers at compile time
         */
+
         int colorResourceName = getResources().getIdentifier(colorName, "color", getApplicationContext().getPackageName());
-        int colorRes = getResources().getColor(colorResourceName, this.getTheme()); //New way with minSdk at API 23
+        int colorRes = getResources().getColor(colorResourceName, this.getTheme());
 
         /* ContextCompat helped with API differences in the app and resources
            Used for below API 23
            int colorRes = ContextCompat.getColor(this, colorResourceName); */
 
-
-        mHelloTextView.setTextColor(colorRes); //Setting the actuall Hello World! color
+        //Setting the actuall Hello World! color
+        mHelloTextView.setTextColor(colorRes);
         //Log.d(getClass().getName(), "value = " + colorRes);
     }
 }
