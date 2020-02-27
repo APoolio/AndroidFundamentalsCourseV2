@@ -21,6 +21,8 @@ public class SecondActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_activitiy);
 
+        Log.d(LOG_TAG, "onCreate");
+
         //Receive the intent
         Intent intent = getIntent();
 
