@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Once the FAB is clicked the NewWordActivity is called with an intent and if a word is inputed by the user onActivityResult will be called
+        //Once the FAB is clicked the NewWordActivity is called with an intent and if a word is inputted by the user onActivityResult will be called
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
         {
