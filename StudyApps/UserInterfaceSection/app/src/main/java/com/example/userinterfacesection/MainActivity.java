@@ -10,10 +10,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity
     private WordListAdapter wordListAdapter;
     //recyclerView to hold the ViewHolder of the words
     private RecyclerView mRecyclerView;
+    //EditText to retrieve the word typed by the user
+    private EditText mAddWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,6 +47,9 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setAdapter(wordListAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //Reference to the EditText
+        mAddWord = findViewById(R.id.addWord);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
         {
@@ -49,9 +57,16 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 int wordListSize = wordList.size();
-                wordList.add("Word " + wordListSize);
-                mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
-                mRecyclerView.smoothScrollToPosition(wordListSize);
+                String word = mAddWord.getText().toString();
+                if(!TextUtils.isEmpty(word))
+                {
+                    wordList.add("Word " + word);
+                    mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
+                    mRecyclerView.smoothScrollToPosition(wordListSize);
+                }
+
+                else
+                    Toast.makeText(MainActivity.this, "Word input is empty.", Toast.LENGTH_SHORT).show();
             }
         });
     }
